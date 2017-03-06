@@ -1,0 +1,43 @@
+## Starting with XGBoost for Classification
+
+This is a simple Shiny App to help you start with XGBoost for classification problems. XGBoost is a famous implementation of the gradient boosting frame. It is widely used amongst the community, and usually yields great results.
+
+You can find more about XGBoost <a href="https://xgboost.readthedocs.io/en/latest//">here</a>
+
+This app allows you to train a predictor using the XGBoost package and the caret package. It allows you to tune your XGBoost model and select the best model using cross-validation (10 fold). 
+
+## 1st Step
+
+First you have to upload your dataset or choose a dataset available. If you decide to upload a dataset, it should be a CSV file with a header. The header should have the columns names.
+
+The current available datasets are the <a href="https://github.com/paulhendricks/titanic">Titanic dataset</a> and the <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/iris.html">Iris dataset</a>.
+
+After uploading your dataset, you will be prompted to choose your target column. This is the column your model will try to predict. Then, you will have to choose the features your model will use to predict your target column. If none is chosen the algorithm will use all the features.
+
+You can do going on the **Dataset** panel on the left.
+
+## 2nd Step
+
+After choosing your dataset and your target column and features you will have to set the parameters to be tuned. Since this is just an introduction to XGBoost you will only have the option to tune 3 parameters. They are:
+
+* **Max Depth**: Maximum depth of a tree, increase this value will make the model more complex / likely to be overfitting.
+
+* **Number of Rounds**: This is the number of iterations the boosting algorithm will go through. Increase this value will make the model likely to be overfitting.
+
+* **Learning Rate**: Step size shrinkage used in update to prevents overfitting. After each boosting step, we can directly get the weights of new features, and the learning rate actually shrinks the feature weights to make the boosting process more conservative.
+
+You will have to fix one parameter and choose possible values for the others. If you fix max depth the value used will be 6, if you fix number of rounds the value used will be 50, if you fix learning rate the value used will be 0.3.
+
+For the not fixed parameters you will have to enter the possible values (at least 2 for each) as a text separated by semicolon. For example: 0.05;0.3;0.1.
+
+You can find more about XGBoost parameters <a https://xgboost.readthedocs.io/en/latest//parameter.html#parameters-in-r-package">here</a>
+
+You can do that going on the **Tuning Paramaters** panel on the left.
+
+## Final step
+
+After choosing your target column, features and tuning paramaters, you can click the **Tune your model** button on the bottom left of the **Tuning Paramaters** panel.
+
+After the algorithm runs you will get a graph showing the results on the **Results** panel. Be aware that your decisions on how many possible values the tuning parameters can have, and the size of your dataset, will affect the time taken by the algorithm to run. Also, there is a time limit of 1 minute, if it takes more than that to tune your model the algorithm will stop.
+
+By the end you can download your trained model as R data and continue your analysis on your own. Enjoy!
